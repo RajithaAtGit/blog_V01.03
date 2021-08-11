@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Category;
-use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Post::class, 'user_id')->constrained();
+            $table->foreignIdFor(User::class, 'user_id')->constrained();
             $table->foreignIdFor(Category::class, 'category_id')->constrained();
             $table->string('slug')->unique();
             $table->string('title');

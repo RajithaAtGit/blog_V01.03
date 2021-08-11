@@ -16,6 +16,7 @@ class PostFactory extends Factory
      */
     protected $model = Post::class;
 
+
     /**
      * Define the model's default state.
      *
@@ -28,10 +29,11 @@ class PostFactory extends Factory
             'user_id' => User::factory(),
             'slug' => $this->faker->unique()->slug(),
             'title' => $this->faker->sentence(5),
-            'excerpt' => $this->faker->paragraph(5),
-            'body' => '<p>'.$this->faker->paragraph(20).'</p>'
+            'excerpt' => $this->faker->paragraph(10),
+            'body' => $this->faker->paragraphs(3, 'true')
 
 
         ];
+
     }
 }
