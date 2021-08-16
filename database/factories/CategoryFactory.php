@@ -23,8 +23,8 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name'=>$this->faker->unique()->sentence(5),
-            'slug'=>$this->faker->unique()->slug(5)
+            'name' => $this->faker->unique()->text(15),
+            'slug' => $this->faker->unique()->slug(5)
         ];
     }
 }

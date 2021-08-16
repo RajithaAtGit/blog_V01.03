@@ -61,9 +61,13 @@ class DatabaseSeeder extends Seeder
               'body' => "<p>First, let's talk about Eloquent model factories. When testing, you may need to insert a few records into your database before executing your test. Instead of manually specifying the value of each column when you create this test data, Laravel allows you to define a set of default attributes for each of your Eloquent models using model factories.</p>"
           ]);*/
 
-        $user = User::factory()->create([
-            'name' => 'Goonawardan R N W'
-        ]);
+        $user = User::factory()
+            ->count(2)
+            ->state(new Sequence(
+                ['name' => 'Goonawardan R N W'],
+                ['name' => 'John Doe']
+            ))
+            ->create();
 
         $category = Category::factory()
             ->count(3)
@@ -78,10 +82,17 @@ class DatabaseSeeder extends Seeder
             ->state(new Sequence(
                 ['category_id' => $category[0]->id],
                 ['category_id' => $category[1]->id],
-                ['category_id' => $category[2]->id]
-            ))->create([
-                'user_id' => $user->id
-            ]);
+                ['category_id' => $category[2]->id],
+
+            ))
+            ->state(new Sequence(
+                ['user_id' => $user[0]->id],
+                ['user_id' => $user[1]->id]
+            ))->create();
+
+        Post::factory()
+            ->count(30)
+            ->create();
 
     }
 }

@@ -19,6 +19,7 @@
         "tailwindcss": "^2.2.7"
     },
     "dependencies": {
+        "alpinejs": "^3.2.3",
         "browser-sync": "^2.27.5"
     }
 }

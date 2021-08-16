@@ -29,8 +29,8 @@ class PostFactory extends Factory
             'user_id' => User::factory(),
             'slug' => $this->faker->unique()->slug(),
             'title' => $this->faker->sentence(5),
-            'excerpt' => $this->faker->paragraph(10),
-            'body' => $this->faker->paragraphs(3, 'true')
+            'excerpt' => '<p>' . implode('</p><p>', $this->faker->paragraphs(2)) . '</p>',
+            'body' => '<p>' . implode('</p><p>', $this->faker->paragraphs(6)) . '</p>',
 
 
         ];

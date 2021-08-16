@@ -15,4 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require("tailwindcss"),
     ]);
+
+mix.js('resources/js/alpine.js', 'public/js');
+
 mix.browserSync('http://0.0.0.0/');
