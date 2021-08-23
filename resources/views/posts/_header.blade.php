@@ -6,31 +6,7 @@
         <!--  Category -->
         <div class="relative lg:flex lg:inline-flex items-center bg-gray-100 rounded-xl">
 
-            <x-dropdown>
-
-                <x-slot name="trigger">
-                    <button class="py-2 pl-3 pr-9 text-sm font-semibold w-full lg:w-32 text-left flex lg:inline-flex">
-                        {{ isset($currentCategory) ? ucwords($currentCategory->name) : 'Categories' }}
-                        <x-icon name="down-arrow" class="absolute pointer-events-none inline-flex " style="right: 12px;">
-
-                        </x-icon>
-                    </button>
-                </x-slot>
-
-                <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
-
-                @foreach($categories as $category)
-                    {{--                    <a href="/categories/{{ $category->slug }}"--}}
-                    {{--                       class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white">--}}
-                    {{--                        {{ ucwords($category->name) }}--}}
-                    {{--                    </a>--}}
-                    <x-dropdown-item href="/categories/{{ $category->slug }}"
-                                     :active="isset($currentCategory) && $currentCategory->is($category)"
-                    >
-                        {{ ucwords($category->name) }}
-                    </x-dropdown-item>
-                @endforeach
-            </x-dropdown>
+            <x-category-dropdown></x-category-dropdown>
 
         </div>
 
@@ -59,8 +35,11 @@
 
     <!-- Search -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
-            <form method="GET" action="">
+            <form method="GET" action="/">
                 <label>
+                    @if(request('category'))
+                        <input type="hidden" name="category" value="{{request('category')}}">
+                    @endif
                     <input
                         type="text"
                         name="search"
