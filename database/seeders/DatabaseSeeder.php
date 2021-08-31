@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             ))->create();
 
         Post::factory()
-            ->count(15)
+            ->count(60)
             ->state(new Sequence(
                 ['category_id' => $category[0]->id],
                 ['category_id' => $category[1]->id],
